@@ -1,12 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.get('/',(req,res)=>{
-    obj ={
-        a:'this',
-        number:6
-    }
-    console.log(req.body);
-    res.json(obj);
-})
+router.get("/", (req, res) => {
+  console.log(req.body);
+  res.json(req.body);
+});
 module.exports = router;
