@@ -99,7 +99,7 @@ router.post(
 
 //Route 3 : authenticate user using : POST "api/auth/getuser"  required Auth
 
-router.post("/getuser", fetchuser, async (req, res) => {
+router.post("/getuser",fetchuser(), async (req, res) => {
     try {
       const userId = req.user.id;
       const user = await User.findById(userId).select("-password");
