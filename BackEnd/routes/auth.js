@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fetchuser = require("../middleware/fetchuser");
 const router = express.Router();
-
 const { body, validationResult } = require("express-validator");
 const JWT_SECRET = "jai@shree&krishna$radheradhe";
 
@@ -13,12 +12,10 @@ const JWT_SECRET = "jai@shree&krishna$radheradhe";
 router.post(
   "/createuser",
   [
-    // name must be at least 5 chars long
-    body("name").isLength({ min: 5 }),
-    // email must be an email
-    body("email").isEmail(),
-    // password must be at least 5 chars long
-    body("password").isLength({ min: 5 }),
+    // title must be at least 5 chars long
+    body("title").isLength({ min: 5 }),
+    // description must be an description
+    body("description").isLength({ min: 5 }),
   ],
   async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
