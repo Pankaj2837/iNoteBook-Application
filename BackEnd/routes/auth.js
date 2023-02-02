@@ -2,7 +2,7 @@ const User = require("../models/User");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const fetchuser = require("../middleware/fetchuser");
 const router = express.Router();
 
 const { body, validationResult } = require("express-validator");
@@ -90,6 +90,20 @@ router.post(
       };
       const awthtocken = jwt.sign(payload, JWT_SECRET);
       res.json(awthtocken);
+    } catch (error) {
+      console.error(error.message);
+      await res.status(500).send("Internal server error");
+    }
+  }
+);
+
+//Route 3 : authenticate user using : POST "api/auth/getuser"  required Auth
+
+router.post("/getuser", fetchuser, async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findById(userId).select("-password");
+      res.send(user);
     } catch (error) {
       console.error(error.message);
       await res.status(500).send("Internal server error");
