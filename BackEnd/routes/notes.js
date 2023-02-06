@@ -46,5 +46,31 @@ router.post("/addnote", fetchuser(),[
   }
 });
 
-// Route for udate existing api 
+// Route for udate existing notes => POST "api/notes/updatenote". Login Required
+
+router.post("/updatenote/:id", fetchuser(),[
+  // title must be at least 5 chars long
+  body("title").isLength({ min: 3 }),
+  // description must be an description
+  body("discription").isLength({ min: 13 }),
+  // description must be an description
+  body("tag").isLength({ min: 5 }),
+],
+async (req, res) => {
+const {title,description,tag} = req.body;
+// Create new note oBJECT
+const newNote = {};
+if(title){newNote.title = title};
+if(description){newNote.description = description};
+if(tag){newNote.tag = tag};
+
+// find the note to be updated
+let note = await Notes.findById(req.params.id); 
+if(!note){res.status(400).send("Not Found")}
+if(note.user.toString() !== req.user.id){
+  return res.status(404).send("Not Allowed");
+}
+note = await Notes.findByIdAndUpdate(req.params.id, {$set:newNote},{new:true})
+res.json({note});
+});
 module.exports = router;
