@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 const Notes = require("../models/Notes");
 
 // Get all notes using : GET: "api/auth/getuser" .Login required
-router.get("/fetchallnotes", fetchuser,async (req, res) => {
+router.get("/fetchallnotes", fetchuser(),async (req, res) => {
   try{
     const notes =  await Notes.find({user:res.user.id});
     console.log(notes);
@@ -17,7 +17,7 @@ router.get("/fetchallnotes", fetchuser,async (req, res) => {
 });
 
 // add notes using : POST: "api/auth/addnote" .Login required
-router.post("/addnote", fetchuser,[
+router.post("/addnote", fetchuser(),[
       // title must be at least 5 chars long
       body("title").isLength({ min: 3 }),
       // description must be an description
@@ -25,16 +25,19 @@ router.post("/addnote", fetchuser,[
       // description must be an description
       body("tag").isLength({ min: 5 }),
 ], async (req, res) => {
-  try{
+    try{
+      //const userId = req.user.id;
     const {title,discription,tag} = req.body;
+    console.log("Body", req.body);
   // Finds the validation errors in this request and wraps them in an object with handy functions
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  const note = new Notes ({
-    title, discription, tag, user : req.user.id
-  });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const note = new Notes ({
+      title, discription, tag, user : req.user.id
+    });
+  console.log("Notes", note)
   const saveNotes = await note.save();
   res.json(saveNotes);
   } catch (error) {
