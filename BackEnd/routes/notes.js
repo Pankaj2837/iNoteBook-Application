@@ -7,7 +7,7 @@ const Notes = require("../models/Notes");
 // Get all notes using : GET: "api/auth/getuser" .Login required
 router.get("/fetchallnotes", fetchuser(),async (req, res) => {
   try{
-    const notes =  await Notes.find({user:res.user.id});
+    const notes =  await Notes.find({user:req.user.id});
     console.log(notes);
     res.json(notes);
   } catch (error) {

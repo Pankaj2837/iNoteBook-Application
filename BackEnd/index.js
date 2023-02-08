@@ -8,6 +8,6 @@ app.use("/api/auth", require("./routes/auth")); //'/api/auth' => url for routing
 app.use("/api/notes", require("./routes/notes")); // //'/api/notes' => url for routing && require('./routes/notes') => file path in which we get this url i.e "notes.js"
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`INoteBook Application listening on port ${port}`);
 });
 connectToMongo();
