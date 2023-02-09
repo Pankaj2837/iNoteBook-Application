@@ -8,7 +8,6 @@ const { body, validationResult } = require("express-validator");
 const JWT_SECRET = "jai@shree&krishna$radheradhe";
 
 //Route 1 : create a user using : POST "api/auth/createuser" dosen't required Auth
-
 router.post(
   "/createuser",
   [
@@ -20,10 +19,11 @@ router.post(
   body("password").isLength({ min: 5 }),
   ],
   async (req, res) => {
+    let success = false;
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
     try {
       // check whether the user exists already
@@ -31,7 +31,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "Sorry a user with this email already exists" });
+          .json({ success,error: "Sorry a user with this email already exists" });
       }
       const salt = await bcrypt.genSaltSync(10);
       const secPass = await bcrypt.hash(req.body.password, salt);
@@ -47,11 +47,12 @@ router.post(
         },
       };
       const authenticationKey = jwt.sign(data, JWT_SECRET);
+      success=true;
       console.log(authenticationKey);
-      res.json({ authenticationKey });
+      res.json({success, authenticationKey });
       //   res.json({ user });
     } catch (error) {
-      console.error(error.message);
+      console.error(success,error.message);
       res.status(500).send("some error occured");
     }
   }
@@ -66,21 +67,22 @@ router.post(
     body("password", "password can't be blank").exists(),
   ],
   async (req, res) => {
+    let success = false;
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
     console.log(req.body);
     try {
       const { email, password } = req.body;
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ error: "sorry user doesn't exist" });
+        return res.status(400).json({ success:false,error: "sorry user doesn't exist" });
       }
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        return res.status(400).json({ error: "sorry password doesn't match" });
+        return res.status(400).json({success:false, error: "sorry password doesn't match" });
       }
       const payload = {
         user: {
@@ -88,10 +90,11 @@ router.post(
         },
       };
       const awthtocken = jwt.sign(payload, JWT_SECRET);
-      res.json(awthtocken);
+      success=true;
+      res.json({success,awthtocken});
     } catch (error) {
-      console.error(error.message);
-      await res.status(500).send("Internal server error");
+      console.error(success,error.message);
+      await res.status(500).send({success:false,error:"Internal server error"});
     }
   }
 );

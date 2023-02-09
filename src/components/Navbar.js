@@ -16,15 +16,19 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname === "/"? "active":""}`} aria-current="page" to="/">Home</Link>
+                            <Link className={`nav-link ${location.pathname === "/"? "active":""}`} aria-current="page" to="/"><b>Home</b></Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname === "/about"? "active":""}`} to="/about">About</Link>
+                            <Link className={`nav-link ${location.pathname === "/about"? "active":""}`} to="/about"><b>About</b></Link>
                         </li>
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <button className="btn btn-success me-2" type="submit"><b>Search</b></button>
+                    </form>
+                    <form className="d-flex">
+                        <Link className="btn btn-success me-2" to="/Login" role="button"><b>LogIn</b></Link>
+                        <Link className="btn btn-success me-2" to="/Signup" role="button"><b>SignUp</b></Link>
                     </form>
                 </div>
             </div>

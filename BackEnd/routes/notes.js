@@ -22,7 +22,7 @@ router.post(
   fetchuser(),
   [
     // title must be at least 5 chars long
-    body("title").isLength({ min: 3 }),
+    body("title").isLength({ min: 5 }),
     // description must be an description
     body("discription").isLength({ min: 13 }),
     // description must be an description
@@ -104,8 +104,6 @@ router.delete(
   "/deletenote/:id",
   fetchuser(),
   async (req, res) => {
-    const { title, description, tag } = req.body;
-
     // find the note to be deleted
     let note = await Notes.findById(req.params.id);
     if (!note) {
