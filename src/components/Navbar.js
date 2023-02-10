@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Navbar</Link>
+                <Link className="navbar-brand" to="/"><b>Navbar</b></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -21,14 +21,16 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className={`nav-link ${location.pathname === "/about"? "active":""}`} to="/about"><b>About</b></Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname === "/Login"? "active":""}`} to="/Login"><b>Login</b></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className={`nav-link ${location.pathname === "/SignUp"? "active":""}`} to="/SignUp"><b>Signup</b></Link>
+                        </li>
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-success me-2" type="submit"><b>Search</b></button>
-                    </form>
-                    <form className="d-flex">
-                        <Link className="btn btn-success me-2" to="/Login" role="button"><b>LogIn</b></Link>
-                        <Link className="btn btn-success me-2" to="/Signup" role="button"><b>SignUp</b></Link>
                     </form>
                 </div>
             </div>

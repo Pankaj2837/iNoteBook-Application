@@ -18,8 +18,8 @@ const NoteItem = (props) => {
                     <p className="card-text">{note.discription}</p>
                 </div>
                 <div className="card-footer text-muted">
-                    <Link to="/" className="btn btn-primary px-4 mx-2" onClick = {() =>{updateNote(note)}}>Edit</Link>
-                    <Link to="/" className="btn btn-primary mx-3" onClick={()=>{deleteNote(note._id)}}>Delete</Link>
+                    <Link to="/" className="btn btn-primary px-4 mx-2" onClick = {() =>{updateNote(note);props.showAlert("Updated successfully","success")}}>Edit</Link>
+                    <Link to="/" className="btn btn-primary mx-3" onClick={()=>{deleteNote(note._id);props.showAlert("Deleted successfully","success");}}>Delete</Link>
                 </div>
             </div>
         </div>

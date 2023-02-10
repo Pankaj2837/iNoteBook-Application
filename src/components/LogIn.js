@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
-function LogIn() {
-    let history = useHistory();
+import { useNavigate } from 'react-router-dom';
+function LogIn(props) {
+    let navigate = useNavigate();
     const[credentials,setCredentials] = useState({email:"", password:""})
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,9 +17,10 @@ function LogIn() {
         console.log(json);
         if(json.success){
             localStorage.setItem('tocken',json.awthtocken);
-            history.push('/');
+            navigate('/');
+            props.showAlert("",'danger');
         }else{
-            alert("unable to login");
+            props.showAlert("Log in successful",'success');
         }
     }
     const onChange =(e)=>{
@@ -28,19 +29,17 @@ function LogIn() {
     return (
         <div className="container mt-3">
             <h3>Log In Form</h3>
-            <p className="text-warning bg-success">Fill Your Details For Log In</p>
-            <form className="was-validated">
+            <p className="text-warning bg-success text-center">Fill Your Details For Log In</p>
+            <form onSubmit={handleSubmit}>
                 <div className="mb-3 mt-3">
                     <label htmlfor="email" className="form-label">Username:</label>
-                    <input type="text" className="form-control" id="email" value={credentials.email} placeholder="Enter username" name="email" required onChange={onChange} />
-                    <div className="invalid-feedback">Please fill out this field.</div>
+                    <input type="email" className="form-control" id="email" value={credentials.email} placeholder="Enter username" name="email" required onChange={onChange} />
                 </div>
                 <div className="mb-3">
                     <label htmlfor="password" className="form-label">Password:</label>
                     <input type="password" className="form-control" id="password" value={credentials.password} placeholder="Enter password" name="password" required onChange={onChange}/>
-                    <div className="invalid-feedback">Please fill out this field.</div>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
 
