@@ -18,9 +18,9 @@ function LogIn(props) {
         if(json.success){
             localStorage.setItem('tocken',json.awthtocken);
             navigate('/');
-            props.showAlert("",'danger');
+            props.showAlert("Loged In Successfully",'success');
         }else{
-            props.showAlert("Log in successful",'success');
+            props.showAlert("Unable to Log in",'danger');
         }
     }
     const onChange =(e)=>{
