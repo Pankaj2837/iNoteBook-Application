@@ -22,12 +22,12 @@ const Notes = (props) => {
     const refClose = useRef(null);
     const updateNote = (currentnote) => {
         ref.current.click();
-        setNote({id:currentnote._id, etitle:currentnote.title,etag:currentnote.tag, ediscription:currentnote.discription});
+        setNote({id:currentnote._id, etitle:currentnote.title, ediscription:currentnote.discription, etag:currentnote.tag});
         
     }
     const handleClick = (e) => {
         console.log("Updating Notes", notes)
-        editNote(note.id,note.etag,note.etitle,note.ediscription);
+        editNote(note.id,note.etitle,note.ediscription,note.etag);
         refClose.current.click();
         props.showAlert("Updated successdully","success");
     }
