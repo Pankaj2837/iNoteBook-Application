@@ -7,7 +7,7 @@ const AddNote = (props) => {
   const [note, setNote] = useState({ title: "", discription: "", tag: "" })
   const handleClick = (e) => {
     e.preventDefault();
-    addNote(note.discription, note.tag, note.title);
+    addNote(note.title, note.discription, note.tag);
     setNote({title: "", discription: "", tag: "" });
     props.showAlert("Added successfully","success")
   }
@@ -34,7 +34,7 @@ const AddNote = (props) => {
             <input type="text" name="tag" className="form-control" id="tag" aria-describedby="tagHelp" onChange={onChange} value={note.tag} required/>
             <div id="tagHelp" className="form-text"><i className={`text-warning bg-light ${note.tag.length >5 ? "d-none":""}`}> Make your tag has <b>more than 5</b> characters.</i></div>
           </div>
-          <button disabled={note.tag.length<=5 || note.title.length<=5 || note.discription.length<=15} type="submit" onClick={handleClick} className="btn btn-primary">Add Note</button>
+          <button disabled={note.title.length<=5 || note.discription.length<=15 || note.tag.length<=5} type="submit" onClick={handleClick} className="btn btn-primary">Add Note</button>
         </form>
       </div>
     </div>
