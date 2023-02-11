@@ -1,0 +1,114 @@
+for getting all notes => URL
+GET  ==>> localhost:5000/api/notes/fetchallnotes?63dc8aca019e99c6568b7b72
+
+Headers :
+
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+auth-tocken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkYzhhY2EwMTllOTljNjU2OGI3YjcyIn0sImlhdCI6MTY3NTM5NzgzNH0.JC2it60V_7WUFnS7OpR_6sHBsyJK-rt5K_FI8tGkFGw
+
+
+=============================================
+
+for getallUser => URL
+GET ==> localhost:5000/api/auth/getuser
+
+Header =>
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+auth-tocken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkYzhhY2EwMTllOTljNjU2OGI3YjcyIn0sImlhdCI6MTY3NTM5NzgzNH0.JC2it60V_7WUFnS7OpR_6sHBsyJK-rt5K_FI8tGkFGw
+
+Body=>
+{
+     "email":"myNAme@gmail.com",
+    "password":"1234533"
+}
+
+=============================================
+
+for updating notes => URL
+
+PUT ==> localhost:5000/api/notes/updatenote/63e1034d28fb27ff5bcdd2de
+
+HEADER =>
+
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+Content-Type: application/json
+auth-tocken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkYzhhY2EwMTllOTljNjU2OGI3YjcyIn0sImlhdCI6MTY3NTM5NzgzNH0.JC2it60V_7WUFnS7OpR_6sHBsyJK-rt5K_FI8tGkFGw
+
+Body =>
+{
+  "title":"P_Notes Updated",
+  "discription":"this is the first line of my notes Updated",
+  "tag":"Monday_Routin_Notes Updated"
+}
+
+==================================================
+
+for adding new notes  => URL
+
+POST  ==> localhost:5000/api/notes/addnote
+
+HEADER =>
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+auth-tocken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNlMTAxNjA3NjZhZGU4NTIzMzA5NzM4In0sImlhdCI6MTY3NTY5MDMzNn0.xZiOIkMtD0-rv18tZvQLmbHX6GzDIVtf0CJOgSKth64
+Content-Type: application/json
+
+Body =>
+{
+  "title":"P_Notes",
+  "discription":"this is the first line of my notes",
+  "tag":"Monday_Routin_Notes"
+}
+
+=======================================================
+for creating New User
+
+POST => localhost:5000/api/auth/createuser
+
+Header =>
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+Content-Type: application/json
+
+
+Body =>
+{
+  "name":"MyName AB",
+    "email":"ABName@gmail.com",
+    "password":"1234533"
+}
+==========================================================
+for get registered user
+
+POST => localhost:5000/api/auth/getuser
+
+Header =>
+
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+auth-tocken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNkYzhhY2EwMTllOTljNjU2OGI3YjcyIn0sImlhdCI6MTY3NTM5NzgzNH0.JC2it60V_7WUFnS7OpR_6sHBsyJK-rt5K_FI8tGkFGw
+
+Body => 
+{
+     "email":"myNAme@gmail.com",
+    "password":"1234533"
+}
+
+=============================================================
+for log in User
+
+POST => localhost:5000/api/auth/login
+
+Header =>
+Accept: */*
+User-Agent: Thunder Client (https://www.thunderclient.com)
+Content-Type: application/json
+
+Body =>
+{
+     "email":"myNAme@gmail.com",
+    "password":"1234533"
+}
